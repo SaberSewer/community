@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -32,6 +33,11 @@ public class AuthorizeController {
         GithubUser githubUser = gitHubProvider.getUser(accessToken);
         if (null != githubUser) {
             User user = loginService.login(githubUser);
+            Cookie cookie = new Cookie("user_session", user.getToken());
+            cookie.setDomain("localhost");
+            cookie.setPath("/");
+            cookie.setMaxAge(60 * 60);
+            response.addCookie(cookie);
             session.setAttribute("user", user);
             return "redirect:/";
         } else {
