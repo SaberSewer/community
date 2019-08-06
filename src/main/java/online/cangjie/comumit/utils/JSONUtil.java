@@ -12,7 +12,7 @@ public class JSONUtil {
     public static <T> T jsonToObject(T t, JSONObject json) {
         Class clazz = t.getClass();
         Field[] fields = clazz.getDeclaredFields();
-        for (int i = 1; i < fields.length; i++) {
+        for (int i = 0; i < fields.length; i++) {
             try {
                 PropertyDescriptor propertyDescriptor = new PropertyDescriptor(fields[i].getName(), clazz);
                 Method method = propertyDescriptor.getWriteMethod();
@@ -22,6 +22,9 @@ public class JSONUtil {
                         break;
                     case "class java.lang.Long":
                         method.invoke(t, json.getLong(fields[i].getName()));
+                        break;
+                    case "class java.lang.Integer":
+                        method.invoke(t, json.getInteger(fields[i].getName()));
                         break;
                 }
             } catch (IntrospectionException | IllegalAccessException | InvocationTargetException e) {

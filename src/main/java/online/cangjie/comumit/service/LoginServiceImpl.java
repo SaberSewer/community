@@ -21,7 +21,6 @@ public class LoginServiceImpl implements LoginService {
 
     public User login(GithubUser githubUser){
         //用户是否已经注册
-        System.out.println(githubUser);
         User user = userDao.queryById(String.valueOf(githubUser.getId()));
         System.out.println(user);
         if (user != null) {
@@ -39,9 +38,10 @@ public class LoginServiceImpl implements LoginService {
             user.setToken(token);
             user.setGmt_create(System.currentTimeMillis());
             user.setGmt_ified(user.getGmt_create());
+            user.setBio(githubUser.getBio());
+            user.setAvatar_url(githubUser.getAvatar_url());
             if(1 == userDao.insertUser(user)){
                 addRedis(user);
-
             }
         }
         return user;

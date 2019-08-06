@@ -6,6 +6,7 @@ import com.alibaba.fastjson.JSONObject;
 import okhttp3.*;
 import online.cangjie.comumit.dto.AccessTokenDto;
 import online.cangjie.comumit.dto.GithubUser;
+import online.cangjie.comumit.utils.JSONUtil;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -32,7 +33,8 @@ public class GitHubProvider {
         Request request = new Request.Builder().url("https://api.github.com/user?access_token=" + accessToken).build();
         try (Response response = client.newCall(request).execute()) {
             JSONObject json = (JSONObject) JSONObject.parse(response.body().string());
-            GithubUser githubUser = new GithubUser(json.getLong("id"), json.getString("login"), json.getString("bio"));
+            System.out.println(json);
+            GithubUser githubUser = JSONUtil.jsonToObject(new GithubUser(), json);
             return githubUser;
         } catch (IOException e) {
             e.printStackTrace();

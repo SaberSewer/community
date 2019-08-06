@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Update;
 
 @Mapper
 public interface UserDao {
-    @Insert("insert into user(id, access_id, name, token, gmt_create, gmt_ified) value(#{id}, #{access_id}, #{name}, #{token}, #{gmt_create}, #{gmt_ified})")
+    @Insert("insert into user(id, access_id, name, token, gmt_create, gmt_ified, avatar_url, bio) value(#{id}, #{access_id}, #{name}, #{token}, #{gmt_create}, #{gmt_ified}, #{avatar_url}, #{bio})")
     Integer insertUser(User user);
 
     @Select("select * from user where access_id = #{access_id}")
