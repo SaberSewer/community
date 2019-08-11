@@ -1,7 +1,6 @@
 package online.cangjie.comumit.dao;
 
 import online.cangjie.comumit.po.Question;
-import online.cangjie.comumit.po.QuestionQuery;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -18,6 +17,9 @@ public interface QuestionDao {
     @Select("select question.id, title, question.gmt_create, comment_count, view_count, like_count, avatar_url from question join user on creator = user.id order by gmt_create limit #{startPage}, #{pageSize}")
     List<Map> queryAllQuestion(@Param("startPage") Integer startPage, @Param("pageSize") Integer pageSize);
 
-    @Select("select COUNT(1) from question")
-    Integer queryQuestionCount();
+    @Select("<script>select COUNT(1) from question <where><if test=\"id != null\">creator = #{id}</if></where></script>")
+    Integer queryQuestionCount(Integer id);
+
+    @Select("select question.id, title, question.gmt_create, comment_count, view_count, like_count, avatar_url from question join user on creator = user.id where user.id = #{id} order by gmt_create limit #{startPage}, #{pageSize}")
+    List<Map> queryQuestionById(@Param("id") Integer id, @Param("startPage") Integer startPage, @Param("pageSize") Integer pageSize);
 }

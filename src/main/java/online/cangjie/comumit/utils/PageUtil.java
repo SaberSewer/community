@@ -24,18 +24,19 @@ public class PageUtil {
     private void setPage() {
         List<String> page = new ArrayList<>();
         page.add("<ul class=\"pagination\">");
-        page.add("<li><a href=\"/?pageNo=1\" aria-label=\"Previous\"><span aria-hidden=\"true\">&laquo;</span></a></li>");
-
+        page.add("<li><a href=\"" + url + "&pageNo=1\" aria-label=\"Previous\"><span aria-hidden=\"true\">&laquo;</span></a></li>");
         //i为页码
         for (int i = pageNo < 3 ? pageNo : pageNo - 2; i <= ((count % pageSize) == 0 ? count / pageSize : count / pageSize + 1 ); i++) {
             if (pageNo == i) {
-                page.add("<li class=\"active\"><a href=\"" + url + i + "\">" + i + "</a></li>");
+                page.add("<li class=\"active\"><a href=\"" + url + "&pageNo=" + i + "\">" + i + "</a></li>");
                 continue;
             }
-            page.add(" <li ><a href=\"" + url + i + "\">" + i + "</a></li>");
+            page.add(" <li ><a href=\"" + url + "&pageNo=" + i + "\">" + i + "</a></li>");
         }
-        page.add("<li><a href=\"/?pageNo=" + String.valueOf(count / pageSize) + "\" aria-label=\"Next\"><span aria-hidden=\"true\">&raquo;</span></a></li></ul>");
+        page.add("<li><a href=\"" + url + "&pageNo=" + ((count % pageSize) == 0 ? count / pageSize : count / pageSize + 1) + "\" aria-label=\"Next\"><span aria-hidden=\"true\">&raquo;</span></a></li></ul>");
+        System.out.println(page);
         StringBuffer stringBuffer = new StringBuffer();
+        int i = 0;
         page.forEach((str) -> stringBuffer.append(str));
         this.page = new String(stringBuffer);
     }

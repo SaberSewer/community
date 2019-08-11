@@ -1,8 +1,8 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>仓颉社区</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta charset="UTF-8">
+    <title>我的问题</title>
     <script src="/static/js/jquery-3.3.1.min.js"></script>
     <link rel="stylesheet" href="/static/css/bootstrap.min.css">
     <link rel="stylesheet" href="/static/css/bootstrap-theme.min.css">
@@ -14,7 +14,7 @@
 <div class="container-fluid main">
     <div class="row">
         <div class="col-lg-9 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <h2><span class="glyphicon glyphicon-list" aria-hidden="true"></span> 发现</h2>
+            <h2><span class="glyphicon glyphicon-list" aria-hidden="true"></span>&nbsp;<span th:text="${title}"></span></h2>
             <hr>
             <div class="media" th:each="prod : ${question.pageData}">
                 <div class="media-left media-middle">
@@ -26,21 +26,15 @@
                     <h4 class="media-heading" th:text="${prod.title}"></h4>
                     <span class="text-desc"><span th:text="${prod.comment_count}"></span>个回复 • <span
                             th:text="${prod.view_count}"></span> 次浏览 • <span
-                            th:text="${#dates.format(prod.gmt_create, 'yyyy-MM-dd hh:ss')}"></span></span>
+                            th:text="${#dates.format(prod.gmt_create, 'yyyy-MM-dd')}"></span></span>
                 </div>
             </div>
-            <nav aria-label="Page navigation" th:utext="${question.page}">
-            </nav>
+            <nav aria-label="Page navigation" th:utext="${question.page}"></nav>
+    </div>
+        <div class="col-lg-3 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <h3>我的信息</h3>
         </div>
-
-        <div class="col-lg-3 col-lg-12 col-md-12 col-sm-12 col-xs-12"></div>
-        <h3>热门话题</h3>
-        &问题标题: 请用精简的语言描述您发布的问题，不超过25字<br>
-        &问题补充: 详细补充您的问题内容，并确保问题描述清晰直观, 并提供一些相关的资料<br>
-        &选择标签: 选择一个或者多个合适的标签，用逗号隔开，每个标签不超过10个字<br>
-
     </div>
 </div>
-
 </body>
 </html>
