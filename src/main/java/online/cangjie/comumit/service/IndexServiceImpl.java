@@ -23,7 +23,22 @@ public class IndexServiceImpl implements IndexService {
             pageNo = 1;
         }
         List<Map> questionList = questionDao.queryAllQuestion((pageNo - 1) * size, size);
-        PageUtil pageUtil = new PageUtil("/?", questionDao.queryQuestionCount(null), size, pageNo);
+        PageUtil pageUtil = new PageUtil("/?", questionDao.queryQuestionCount(null, null), size, pageNo);
+        pageUtil.setPageData(questionList);
+        return pageUtil;
+    }
+
+    @Override
+    public PageUtil getQuestionBy(String message, Integer pageNo) {
+        if(pageNo == null){
+            pageNo = 1;
+        }
+        StringBuffer stringBuffer = new StringBuffer("/searcher?message=");
+        if(message != null){
+            stringBuffer.append(message);
+        }
+        List<Map> questionList = questionDao.queryQuestionByMessage(message, (pageNo - 1) * size, size);
+        PageUtil pageUtil = new PageUtil(new String(stringBuffer), questionDao.queryQuestionCount(null, message), size, pageNo);
         pageUtil.setPageData(questionList);
         return pageUtil;
     }

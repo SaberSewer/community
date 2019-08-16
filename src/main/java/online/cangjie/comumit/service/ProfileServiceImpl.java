@@ -23,7 +23,7 @@ public class ProfileServiceImpl implements ProfileService {
             pageNo = 1;
         }
         List<Map> questionList = questionDao.queryQuestionById(id, (pageNo - 1) * size, size);
-        Integer count = questionDao.queryQuestionCount(id);
+        Integer count = questionDao.queryQuestionCount(id, null);
         StringBuffer stringBuffer = new StringBuffer("/profile/questions?userId=");
         stringBuffer.append(id);
         PageUtil pageUtil = new PageUtil(new String(stringBuffer), count, size, pageNo);

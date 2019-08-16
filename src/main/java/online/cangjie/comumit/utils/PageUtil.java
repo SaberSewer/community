@@ -34,9 +34,7 @@ public class PageUtil {
             page.add(" <li ><a href=\"" + url + "&pageNo=" + i + "\">" + i + "</a></li>");
         }
         page.add("<li><a href=\"" + url + "&pageNo=" + ((count % pageSize) == 0 ? count / pageSize : count / pageSize + 1) + "\" aria-label=\"Next\"><span aria-hidden=\"true\">&raquo;</span></a></li></ul>");
-        System.out.println(page);
         StringBuffer stringBuffer = new StringBuffer();
-        int i = 0;
         page.forEach((str) -> stringBuffer.append(str));
         this.page = new String(stringBuffer);
     }

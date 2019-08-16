@@ -9,6 +9,7 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -35,6 +36,12 @@ public class InedxController {
             }
         }
         model.addAttribute("question", indexService.getAllQuestion(pageNo));
+        return "index";
+    }
+
+    @PostMapping("/searcher")
+    public String searcher(String message, Model model, Integer pageNo){
+        model.addAttribute("question", indexService.getQuestionBy(message, pageNo));
         return "index";
     }
 }

@@ -4,4 +4,6 @@ import online.cangjie.comumit.utils.PageUtil;
 
 public interface IndexService {
     PageUtil getAllQuestion(Integer pageNo);
+
+    PageUtil getQuestionBy(String message, Integer pageNo);
 }
