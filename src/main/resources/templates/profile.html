@@ -8,10 +8,12 @@
     <link rel="stylesheet" href="/static/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="/static/css/comumit.css">
     <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/menu.js"></script>
+
 </head>
 <body>
 <div th:insert="navlgation :: nav"></div>
-<div class="container-fluid main">
+<div class="container-fluid main" >
     <div class="row">
         <div class="col-lg-9 col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <h2><span class="glyphicon glyphicon-list" aria-hidden="true"></span>&nbsp;<span th:text="${title}"></span></h2>
@@ -33,6 +35,15 @@
     </div>
         <div class="col-lg-3 col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <h3>What Do You Do</h3>
+            <div class="list-group">
+                <a id="questions" href="/profile/questions" class="list-group-item">
+                   我的问题
+                </a>
+                <a id="myInfo" href="/profile/myInfo" class="list-group-item">个人信息</a>
+                <a href="#" class="list-group-item">Morbi leo risus</a>
+                <a href="#" class="list-group-item">Porta ac consectetur ac</a>
+                <a href="#" class="list-group-item">Vestibulum at eros</a>
+            </div>
         </div>
     </div>
 </div>
