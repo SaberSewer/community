@@ -17,6 +17,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {       //请求进入这个拦截器
+        System.out.println(checkLogin);
         checkLogin.checkLoginByCookies(request, response);
         return true;        //有的话就继续操作
     }

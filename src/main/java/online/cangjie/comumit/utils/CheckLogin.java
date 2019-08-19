@@ -16,10 +16,12 @@ public class CheckLogin {
     private StringRedisTemplate stringRedisTemplate;
 
     public void checkLoginByCookies(HttpServletRequest request, HttpServletResponse response){
-        System.out.println(stringRedisTemplate);
         Cookie[] cookies = request.getCookies();
+        System.out.println(cookies);
+        if(cookies == null )
+            return;
         for (Cookie cookie : cookies) {
-            if (cookie.getName().equals("user_session")) {
+            if ("user_session".equals(cookie.getName())) {
                 JSONObject json = (JSONObject) JSONObject.parse(stringRedisTemplate.opsForValue().get("user_session:" + cookie.getValue()));
                 if (json == null) {
                     break;
