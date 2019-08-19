@@ -18,27 +18,31 @@
             <hr>
             <div class="media" th:each="prod : ${question.pageData}">
                 <div class="media-left media-middle">
-                    <a href="#">
+                    <a th:href="'userInfo?id=' + ${prod.userId}">
                         <img class="media-object img-circle" th:src="${prod.avatar_url}" alt="用户头像">
                     </a>
                 </div>
                 <div class="media-body">
+                    <a th:href="'question?id=' + ${prod.id}">
                     <h4 class="media-heading" th:text="${prod.title}"></h4>
                     <span class="text-desc"><span th:text="${prod.comment_count}"></span>个回复 • <span
                             th:text="${prod.view_count}"></span> 次浏览 • <span
                             th:text="${#dates.format(prod.gmt_create, 'yyyy-MM-dd hh:ss')}"></span></span>
+                    </a>
                 </div>
             </div>
             <nav aria-label="Page navigation" th:utext="${question.page}">
             </nav>
         </div>
 
-        <div class="col-lg-3 col-lg-12 col-md-12 col-sm-12 col-xs-12"></div>
-        <h3>热门话题</h3>
-        &问题标题: 请用精简的语言描述您发布的问题，不超过25字<br>
-        &问题补充: 详细补充您的问题内容，并确保问题描述清晰直观, 并提供一些相关的资料<br>
-        &选择标签: 选择一个或者多个合适的标签，用逗号隔开，每个标签不超过10个字<br>
-
+        <div class="col-lg-3 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <h3>热门话题</h3>
+            <hr>
+            <ul class="list-group img-content">
+                <li class="list-group-item" th:each="q : ${hot_title}"><a th:href="'question?id=' + ${q.id}" th:text="${q.title}"></a></li>
+            </ul>
+        </div>
+        </div>
     </div>
 </div>
 

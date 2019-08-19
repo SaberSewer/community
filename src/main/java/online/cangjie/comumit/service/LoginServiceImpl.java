@@ -22,7 +22,6 @@ public class LoginServiceImpl implements LoginService {
     public User login(GithubUser githubUser){
         //用户是否已经注册
         User user = userDao.queryById(String.valueOf(githubUser.getId()));
-        System.out.println(user);
         if (user != null) {
             String name = stringRedisTemplate.opsForValue().get("user_session:"+user.getToken());
             if (name == null){

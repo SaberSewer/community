@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="index-right">
+    <h3>热门话题</h3>
+    <div th:each="question : ${#httpServletRequest.getAttribute('hot_title')}">
+        <ul class="list-group"> <li class="list-group-item"> <span class="badge">14</span> Cras justo odio </li> </ul>
+
+    </div>
+    <h3>大家都在看</h3>'
+</div>
+</body>
+</html>

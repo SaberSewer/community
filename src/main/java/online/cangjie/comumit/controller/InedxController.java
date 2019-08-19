@@ -14,12 +14,14 @@ public class InedxController {
 
     @GetMapping("/")
     public String index(Model model, Integer pageNo){
+        model.addAttribute("hot_title", indexService.getHotCat());
         model.addAttribute("question", indexService.getAllQuestion(pageNo));
         return "index";
     }
 
     @PostMapping("/searcher")
     public String searcher(String message, Model model, Integer pageNo){
+        model.addAttribute("hot_title", indexService.getHotCat());
         model.addAttribute("question", indexService.getQuestionBy(message, pageNo));
         return "index";
     }
