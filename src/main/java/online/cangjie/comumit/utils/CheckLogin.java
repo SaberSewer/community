@@ -17,7 +17,6 @@ public class CheckLogin {
 
     public void checkLoginByCookies(HttpServletRequest request, HttpServletResponse response){
         Cookie[] cookies = request.getCookies();
-        System.out.println(cookies);
         if(cookies == null )
             return;
         for (Cookie cookie : cookies) {
