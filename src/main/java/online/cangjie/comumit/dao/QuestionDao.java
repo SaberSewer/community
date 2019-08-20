@@ -11,7 +11,7 @@ public interface QuestionDao {
     @Insert("insert into question(title, description, gmt_create, gmt_modified, creator, tag) value(#{title}, #{description}, #{gmt_create}, #{gmt_modified}, #{creator}, #{tag})")
     Integer insertQuestion(Question question);
 
-    @Select("select question.id, title, question.gmt_create, comment_count, view_count, like_count, avatar_url, user.id as userId from question join user on creator = user.id order by gmt_create limit #{startPage}, #{pageSize}")
+    @Select("select question.id, title, question.gmt_create, comment_count, view_count, like_count, avatar_url, user.id as userId from question join user on creator = user.id order by gmt_create desc limit #{startPage}, #{pageSize}")
     List<Map> queryAllQuestion(@Param("startPage") Integer startPage, @Param("pageSize") Integer pageSize);
 
     @Select("<script>select COUNT(1) from question <where><if test=\"id != null\">creator = #{id}</if><if test=\"message != null\">title like '%${message}%'</if></where></script>")
