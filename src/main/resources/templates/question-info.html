@@ -14,11 +14,15 @@
 <div class="container-fluid main">
     <div class="row">
         <div class="col-lg-9 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <h2><span class="glyphicon glyphicon-list" aria-hidden="true"></span> <span th:text="question.title"></span></h2>
-            作者： |发布时间： |阅读量：
+            <h2><img style="height: 50px; width: 50px;" class="img-circle" th:src="${question.avatar_url}" /><span th:text="${question.title}"></span></h2>
+            作者：<span th:text="${question.name}"></span> |发布时间：<span th:text="${#dates.format(question.gmt_create, 'yyyy-MM-dd hh:ss')}"></span> |阅读量： <span th:text="${question.view_count}"></span>
             <hr>
-            <div id="question-view">
+            <div id="question-view" th:text="${question.description}">
 
+            </div>
+            <hr>
+            <div id="tag">
+                
             </div>
         </div>
 

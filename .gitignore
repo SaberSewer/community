@@ -29,3 +29,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### IMG-Server ###
+fast.properties
