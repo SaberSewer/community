@@ -26,6 +26,7 @@ public class FileUtils {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         return path + name;
     }
 
@@ -35,7 +36,6 @@ public class FileUtils {
             ClientGlobal.initByProperties("fast.properties");
             TrackerClient trackerClient = new TrackerClient();
             TrackerServer trackerServer = trackerClient.getConnection();
-            System.out.println("ClientGlobal.configInfo(): " + ClientGlobal.configInfo());
             StorageClient1 storageClient1 = new StorageClient1(trackerServer, null);
             NameValuePair[] nameValuePairs = new NameValuePair[3];
             nameValuePairs[0] = new NameValuePair("fileName", fileName);
