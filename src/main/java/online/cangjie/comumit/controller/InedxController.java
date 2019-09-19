@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class InedxController {
@@ -24,5 +25,10 @@ public class InedxController {
         model.addAttribute("hot_title", indexService.getHotCat());
         model.addAttribute("question", indexService.getQuestionBy(message, pageNo));
         return "index";
+    }
+
+    @GetMapping(value = "login")
+    public String login(){
+        return "login";
     }
 }
